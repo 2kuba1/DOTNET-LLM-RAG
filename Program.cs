@@ -1,6 +1,6 @@
 ﻿using DotnetLLMRag;
 
-const string uri = "";
+const string uri = "z";
 const string embeddingModel = "";
 const string respondingModel = "";
 const string txtFilePath = "";

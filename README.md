@@ -25,7 +25,7 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 # 3 dotnet build
 # 4 dotnet run
 
-**TXT FILE REQUIRED AND SHOULD BE STORED AT \LocalAI\bin\Debug\net8.0 path**
+**TXT FILE REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER**
 
 - const string uri = "";
 - const string embeddingModel = "";

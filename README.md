@@ -19,17 +19,19 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 - OLLAMA installed
 - TXT file with prepared data
 
-## Instalation
+## InstalLation
 # 1 git clone https://github.com/2kuba1/DOTNET-LLM-RAG.git
 # 2 cd path/to/your/project
 # 3 dotnet build
 # 4 dotnet run
 
-**TXT FILE REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER**
+**TXT FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER**
+**JSON FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER TO USE REMEMBERING**
 
 - const string uri = "";
 - const string embeddingModel = "";
 - const string respondingModel = "";
 - const string txtFilePath = "";
+- const string vectorStoreFilePath = ""; - fill with .json file 
 
 Should be filled with your data

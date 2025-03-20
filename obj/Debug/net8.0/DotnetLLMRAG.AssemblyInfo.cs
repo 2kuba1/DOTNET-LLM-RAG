@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DotnetLLMRAG")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca3f0d92043b5fe6cf5c139e64d3a75d388bf199")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57cf300b984ec2be52887310488108ded0841004")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotnetLLMRAG")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotnetLLMRAG")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

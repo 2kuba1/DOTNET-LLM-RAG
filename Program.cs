@@ -1,22 +1,27 @@
 ﻿using DotnetLLMRag;
 
-const string uri = "http://127.0.0.1:11436/";
-const string embeddingModel = "avr/sfr-embedding-mistral:latest";
-const string respondingModel = "deepseek-r1:1.5b";
-const string txtFilePath = "xd.txt";
+const string uri = "";
+const string embeddingModel = "";
+const string respondingModel = "";
+const string txtFilePath = "";
+const string vectorStoreFilePath = "";
 
-var utils = new Utils(uri, embeddingModel, respondingModel);
+var utils = new Utils(uri, embeddingModel, respondingModel, vectorStoreFilePath);
 
 var documents = File.ReadAllLines(txtFilePath);
 
-var vectorStore = new Dictionary<float[], string>();
-
 Console.WriteLine("Generating ... (this my take a whileee)"); //depends on file size and embedding model
+
+var vectorStore = utils.LoadVectorStore();
+
+Console.WriteLine("Generating embeddings ...");
 foreach (var doc in documents)
 {
     var embedding = await utils.GenerateEmbeddingAsync(doc);
     vectorStore[embedding] = doc;
 }
+
+utils.SaveVectorStore(vectorStore);
 
 Console.WriteLine("AI is ready!");
 

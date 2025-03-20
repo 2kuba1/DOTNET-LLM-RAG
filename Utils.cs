@@ -9,19 +9,14 @@ public class Utils
     private string UriText { get; }
     private string EmbeddingModel { get; }
     private string RespondingModel { get; }
+    private string VectorStoreFilePath { get; }
 
     private readonly HttpClient _httpClient;
 
-    public Utils(string uriText, string embeddingModel, string respondingModel)
+    public Utils(string uriText, string embeddingModel, string respondingModel, string vectorStoreFilePath)
     {
         if(string.IsNullOrEmpty(uriText))
             throw new ArgumentNullException("Uri can not be null or empty");
-
-        _httpClient = new HttpClient
-        {
-            BaseAddress = new Uri(uriText),
-            Timeout = TimeSpan.FromMinutes(5)
-        };
 
         if(string.IsNullOrEmpty(embeddingModel))
             throw new ArgumentNullException("embeddingModel can not be null or empty");
@@ -29,11 +24,42 @@ public class Utils
         if(string.IsNullOrEmpty(respondingModel))
             throw new ArgumentNullException("respondingModel can not be null or empty");
         
+        if(string.IsNullOrEmpty(vectorStoreFilePath))
+            throw new ArgumentNullException("vectorStoreFilePath can not be null or empty");
+        
+        _httpClient = new HttpClient
+        {
+            BaseAddress = new Uri(uriText),
+            Timeout = TimeSpan.FromMinutes(5)
+        };
+        
+        VectorStoreFilePath = vectorStoreFilePath;
         UriText = uriText;
         EmbeddingModel = embeddingModel;
         RespondingModel = respondingModel;
     }
 
+    public void SaveVectorStore(Dictionary<float[], string> vectorStore)
+    {
+        var serializedData = vectorStore.ToDictionary(
+            kvp => JsonSerializer.Serialize(kvp.Key),
+            kvp => kvp.Value
+        );
+        File.WriteAllText(VectorStoreFilePath, JsonSerializer.Serialize(serializedData));
+    }
+    
+    public Dictionary<float[], string> LoadVectorStore()
+    {
+        if (!File.Exists(VectorStoreFilePath)) return new Dictionary<float[], string>();
+
+        var serializedData = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(VectorStoreFilePath));
+
+        return serializedData.ToDictionary(
+            kvp => JsonSerializer.Deserialize<float[]>(kvp.Key),
+            kvp => kvp.Value
+        );
+    }
+    
     public async Task<float[]> GenerateEmbeddingAsync(string text)
     {
         try

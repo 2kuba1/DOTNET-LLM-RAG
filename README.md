@@ -9,7 +9,7 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 - ⚡ **Fast & Lightweight** – Runs locally without cloud dependencies  
 
 ## Tech Stack
-- **Language:** C# (.NET 7+)  
+- **Language:** C# (.NET 8+)  
 - **AI Model:** Tested(`deepseek-r1:1.5b`, `avr/sfr-embedding-mistral`)  
 - **Vector Search:** Cosine similarity  
 - **Storage:** In-memory dictionary (can be extended to use vector databases)  

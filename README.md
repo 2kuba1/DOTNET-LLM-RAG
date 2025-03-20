@@ -12,7 +12,7 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 - **Language:** C# (.NET 8+)  
 - **AI Model:** Tested(`deepseek-r1:1.5b`, `avr/sfr-embedding-mistral`)  
 - **Vector Search:** Cosine similarity  
-- **Storage:** In-memory dictionary (can be extended to use vector databases)  
+- **Storage:** In-memory dictionary and JSON file (can be extended to use vector databases)  
 
 ## Prerequisites
 - .NET 8 or later installed

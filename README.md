@@ -25,7 +25,7 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 # 3 dotnet build
 # 4 dotnet run
 
-**TXT FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER**
+**TXT FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER** <br />
 **JSON FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER TO USE REMEMBERING**
 
 - const string uri = "";

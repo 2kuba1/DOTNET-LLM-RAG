@@ -30,6 +30,6 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 - const string uri = "";
 - const string embeddingModel = "";
 - const string respondingModel = "";
-- - const string txtFilePath = "";
+- const string txtFilePath = "";
 
 Should be filled with your data

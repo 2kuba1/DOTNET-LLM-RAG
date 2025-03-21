@@ -52,6 +52,9 @@ public class Utils
     {
         if (!File.Exists(VectorStoreFilePath)) return new Dictionary<float[], string>();
 
+        if(File.ReadAllLines(VectorStoreFilePath).Count() == 0)
+            return new Dictionary<float[], string>();
+
         var serializedData = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(VectorStoreFilePath));
 
         return serializedData.ToDictionary(

@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jakub\\Desktop\\DotnetLLMRAG\\DotnetLLMRAG.csproj": {}
+    "C:\\Users\\Praktyka\\Desktop\\DOTNET-LLM-RAG\\DotnetLLMRAG.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jakub\\Desktop\\DotnetLLMRAG\\DotnetLLMRAG.csproj": {
+    "C:\\Users\\Praktyka\\Desktop\\DOTNET-LLM-RAG\\DotnetLLMRAG.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jakub\\Desktop\\DotnetLLMRAG\\DotnetLLMRAG.csproj",
+        "projectUniqueName": "C:\\Users\\Praktyka\\Desktop\\DOTNET-LLM-RAG\\DotnetLLMRAG.csproj",
         "projectName": "DotnetLLMRAG",
-        "projectPath": "C:\\Users\\jakub\\Desktop\\DotnetLLMRAG\\DotnetLLMRAG.csproj",
-        "packagesPath": "C:\\Users\\jakub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jakub\\Desktop\\DotnetLLMRAG\\obj\\",
+        "projectPath": "C:\\Users\\Praktyka\\Desktop\\DOTNET-LLM-RAG\\DotnetLLMRAG.csproj",
+        "packagesPath": "C:\\Users\\Praktyka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Praktyka\\Desktop\\DOTNET-LLM-RAG\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jakub\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Praktyka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.406/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

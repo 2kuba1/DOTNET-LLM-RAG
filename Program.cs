@@ -40,6 +40,9 @@ class Program
         utils.SaveVectorStore(vectorStore);
         Console.WriteLine("AI is ready!");
 
+        var previousQuery = "";
+        bool firstQuery = false;
+
         while (true)
         {
             Console.Write("\nYou: ");
@@ -48,6 +51,15 @@ class Program
             if (string.IsNullOrEmpty(userQuery))
             {
                 Console.WriteLine("Prompt cannot be null or empty!\n");
+                continue;
+            }
+
+            if (userQuery == "/feed" && !firstQuery && !string.IsNullOrEmpty(previousQuery))
+            {
+                Console.Write("Give me correct answer: ");
+                var answerToSave = $"This is the correct answer to '{previousQuery}': " + Console.ReadLine();
+
+                vectorStore = await utils.FeedByUser(answerToSave, vectorStore);
                 continue;
             }
 
@@ -63,6 +75,9 @@ class Program
 
             Console.Write("AI: ");
             await utils.GenerateResponseAsync(finalPrompt);
+
+            previousQuery = userQuery;
         }
+
     }
 }

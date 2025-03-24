@@ -40,6 +40,20 @@ public class Utils
         RespondingModel = configuration.RespondingModel;
     }
 
+    public async Task<Dictionary<string,string>> FeedByUser(string query, Dictionary<string, string> vectorStore)
+    {
+        var embedding = await GenerateEmbeddingAsync(query);
+        if (embedding.Length > 0)
+        {
+            vectorStore[JsonSerializer.Serialize(embedding)] = query;
+        }
+
+        SaveVectorStore(vectorStore);
+
+        await Console.Out.WriteLineAsync("Feeded!");
+        return LoadVectorStore();
+    }
+
     public void SaveVectorStore(Dictionary<string, string> vectorStore)
     {
         if (vectorStore == null || vectorStore.Count == 0)

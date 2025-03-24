@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DotnetLLMRAG")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+942aeda1a5086360098084e7fa8b7552be785a26")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f12179b0906dd244a7bcee451a4d97b338745c97")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotnetLLMRAG")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotnetLLMRAG")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

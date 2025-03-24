@@ -6,7 +6,8 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 ## Features
 - 🧠 **Vector-Based Search** – Uses cosine similarity to find the most relevant text  
 - 🤖 **LocalAI Integration** – Calls LocalAI API for embeddings and response generation  
-- ⚡ **Fast & Lightweight** – Runs locally without cloud dependencies  
+- ⚡ **Fast & Lightweight** – Runs locally without cloud dependencies
+- 💉 **Easy Configuration & Dynamical answer error correction** - Application is easy to configure via appsettings.json and you can dynamically correct AI answers!
 
 ## Tech Stack
 - **Language:** C# (.NET 8+)  

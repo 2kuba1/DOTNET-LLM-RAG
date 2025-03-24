@@ -29,12 +29,17 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 
 
 **TXT FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER** <br />
-**JSON FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER TO USE REMEMBERING**
+**vector.json FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER TO USE REMEMBERING**
+**appsettings.json FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER**
 
-- const string uri = "";
-- const string embeddingModel = "";
-- const string respondingModel = "";
-- const string txtFilePath = "";
-- const string vectorStoreFilePath = ""; - fill with .json file 
+
+**appsettings.json** <br/>
+{ <br/>
+   "uri": "",<br/>
+   "embeddingModel": "",<br/>
+   "respondingModel": "",<br/>
+   "txtFilePath": "",<br/>
+   "vectorStoreFilePath": "" - fill with .json file <br/>
+ }
 
 Should be filled with your data

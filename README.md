@@ -19,11 +19,13 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
 - OLLAMA installed
 - TXT file with prepared data
 
-## InstalLation
-# 1 git clone https://github.com/2kuba1/DOTNET-LLM-RAG.git
-# 2 cd path/to/your/project
-# 3 dotnet build
-# 4 dotnet run
+## Installation
+- 1 git clone https://github.com/2kuba1/DOTNET-LLM-RAG.git
+- 2 ollama serve (if error on windows: set OLLAMA_HOST=127.0.0.1:11436)
+- 2 cd path/to/your/project
+- 3 dotnet build
+- 4 dotnet run
+
 
 **TXT FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER** <br />
 **JSON FILE IS REQUIRED AND SHOULD BE STORED AT IN SOLUTION FOLDER TO USE REMEMBERING**

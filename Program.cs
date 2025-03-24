@@ -5,11 +5,11 @@ class Program
 {
     static async Task Main()
     {
-        const string uri = "http://127.0.0.1:11436/";
-        const string embeddingModel = "avr/sfr-embedding-mistral:latest";
-        const string respondingModel = "deepseek-r1:1.5b";
-        const string txtFilePath = "base.txt";
-        const string vectorStoreFilePath = "vector.json";
+        const string uri = "";
+        const string embeddingModel = "";
+        const string respondingModel = "";
+        const string txtFilePath = "";
+        const string vectorStoreFilePath = "";
 
         var utils = new Utils(uri, embeddingModel, respondingModel, vectorStoreFilePath);
 

@@ -1,19 +1,17 @@
 ﻿using DotnetLLMRag;
+using DotnetLLMRAG.Models;
 using System.Text.Json;
 
 class Program
 {
     static async Task Main()
     {
-        const string uri = "";
-        const string embeddingModel = "";
-        const string respondingModel = "";
-        const string txtFilePath = "";
-        const string vectorStoreFilePath = "";
+        const string configurationFilePath = "appsettings.json";
+        using FileStream stream = File.OpenRead(configurationFilePath);
+        var configuration = await JsonSerializer.DeserializeAsync<Configuration>(stream) ?? throw new Exception("Configuration file is null");
+        var utils = new Utils(configuration);
 
-        var utils = new Utils(uri, embeddingModel, respondingModel, vectorStoreFilePath);
-
-        var words = File.ReadAllText(txtFilePath).Split(' ');
+        var words = File.ReadAllText(configuration.TxtFilePath).Split(' ');
 
         const int chunkSize = 500;
         const int overlap = 100;

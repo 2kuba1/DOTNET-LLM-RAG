@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text;
 using DotnetLLMRag.Models;
+using DotnetLLMRAG.Models;
 
 namespace DotnetLLMRag;
 
@@ -13,30 +14,30 @@ public class Utils
 
     private readonly HttpClient _httpClient;
 
-    public Utils(string uriText, string embeddingModel, string respondingModel, string vectorStoreFilePath)
+    public Utils(Configuration configuration)
     {
-        if (string.IsNullOrEmpty(uriText))
-            throw new ArgumentNullException(nameof(uriText), "URI cannot be null or empty");
+        if (string.IsNullOrEmpty(configuration.Uri))
+            throw new ArgumentNullException("URI cannot be null or empty");
 
-        if (string.IsNullOrEmpty(embeddingModel))
-            throw new ArgumentNullException(nameof(embeddingModel), "Embedding model cannot be null or empty");
+        if (string.IsNullOrEmpty(configuration.EmbeddingModel))
+            throw new ArgumentNullException("Embedding model cannot be null or empty");
 
-        if (string.IsNullOrEmpty(respondingModel))
-            throw new ArgumentNullException(nameof(respondingModel), "Responding model cannot be null or empty");
+        if (string.IsNullOrEmpty(configuration.RespondingModel))
+            throw new ArgumentNullException("Responding model cannot be null or empty");
 
-        if (string.IsNullOrEmpty(vectorStoreFilePath))
-            throw new ArgumentNullException(nameof(vectorStoreFilePath), "Vector store file path cannot be null or empty");
+        if (string.IsNullOrEmpty(configuration.VectorStoreFilePath))
+            throw new ArgumentNullException("Vector store file path cannot be null or empty");
 
         _httpClient = new HttpClient
         {
-            BaseAddress = new Uri(uriText),
+            BaseAddress = new Uri(configuration.Uri),
             Timeout = TimeSpan.FromMinutes(5)
         };
 
-        VectorStoreFilePath = vectorStoreFilePath;
-        UriText = uriText;
-        EmbeddingModel = embeddingModel;
-        RespondingModel = respondingModel;
+        VectorStoreFilePath = configuration.VectorStoreFilePath;
+        UriText = configuration.Uri;
+        EmbeddingModel = configuration.EmbeddingModel;
+        RespondingModel = configuration.RespondingModel;
     }
 
     public void SaveVectorStore(Dictionary<string, string> vectorStore)

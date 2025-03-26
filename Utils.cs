@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text;
 using DotnetLLMRag.Models;
@@ -159,18 +160,33 @@ public class Utils
 
     public async Task GenerateResponseAsync(string prompt)
     {
-        var requestBody = JsonSerializer.Serialize(new { model = RespondingModel, prompt });
+        var requestBody = new
+        {
+            model = "llama-3.3-70b-versatile",
+            messages = new[]
+            {
+                new { role = "user", content = prompt}
+            }
+        };
+
+        var jsonBody = JsonSerializer.Serialize(requestBody);
+        var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+        
+        _httpClient.DefaultRequestHeaders.Clear();
+        _httpClient.DefaultRequestHeaders.Add("Authorization", "");
+
 
         try
         {
-            var response = await _httpClient.PostAsync($"{UriText}api/generate", new StringContent(requestBody, Encoding.UTF8, "application/json"));
-
+            using var response = await _httpClient.PostAsync("https://api.groq.com/openai/v1/chat/completions", content);
+            
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine($"Error: {response.StatusCode}");
                 return;
             }
 
+            
             var stream = await response.Content.ReadAsStreamAsync();
             var sb = new StringBuilder();
 
@@ -185,8 +201,8 @@ public class Utils
                     var chunk = JsonSerializer.Deserialize<ChatResponse>(line);
                     if (chunk != null)
                     {
-                        sb.Append(chunk.Response);
-                        if (chunk.Done) break;
+                        sb.Append(chunk.Choices.Message.Content);
+                        
                     }
                 }
                 catch (JsonException ex)

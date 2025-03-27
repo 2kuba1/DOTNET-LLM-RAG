@@ -13,8 +13,8 @@ class Program
 
         var words = File.ReadAllText(configuration.TxtFilePath).Split(' ');
 
-        const int chunkSize = 500;
-        const int overlap = 100;
+        const int chunkSize = 700;
+        const int overlap = 300;
 
         var documents = new List<string>();
 
@@ -54,12 +54,12 @@ class Program
                 continue;
             }
 
-            if (userQuery == "/feed" && !firstQuery && !string.IsNullOrEmpty(previousQuery))
+            if (userQuery == configuration.CorrectionPrefix && !firstQuery && !string.IsNullOrEmpty(previousQuery))
             {
                 Console.Write("Give me correct answer: ");
                 var answerToSave = $"This is the correct answer to '{previousQuery}': " + Console.ReadLine();
 
-                vectorStore = await utils.FeedByUser(answerToSave, vectorStore);
+                vectorStore = await utils.FeedByUser(answerToSave, vectorStore, chunkSize, overlap);
                 continue;
             }
 

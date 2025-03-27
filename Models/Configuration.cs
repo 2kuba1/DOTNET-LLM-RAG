@@ -14,4 +14,10 @@ public class Configuration
     public string TxtFilePath { get; set; }
     [JsonPropertyName("vectorStoreFilePath")]
     public string VectorStoreFilePath { get; set; }
+    [JsonPropertyName("groq_apikey")]
+    public string GroqApiKey { get; set; }
+    [JsonPropertyName("correctionPrefix")]
+    public string CorrectionPrefix { get; set; }
+    [JsonPropertyName("api-url")]
+    public string ApiUrl { get; set; }
 }

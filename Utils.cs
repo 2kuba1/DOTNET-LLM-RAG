@@ -12,6 +12,8 @@ public class Utils
     private string EmbeddingModel { get; }
     private string RespondingModel { get; }
     private string VectorStoreFilePath { get; }
+    private string ApiKey { get; }
+    private string ApiUrl { get; }
 
     private readonly HttpClient _httpClient;
 
@@ -39,17 +41,30 @@ public class Utils
         UriText = configuration.Uri;
         EmbeddingModel = configuration.EmbeddingModel;
         RespondingModel = configuration.RespondingModel;
+        ApiKey = configuration.GroqApiKey;
+        ApiUrl = configuration.ApiUrl;
     }
 
-    public async Task<Dictionary<string,string>> FeedByUser(string query, Dictionary<string, string> vectorStore)
+    public async Task<Dictionary<string, string>> FeedByUser(string query, Dictionary<string, string> vectorStore, int chunkSize, int overlap)
     {
-        var embedding = await GenerateEmbeddingAsync(query);
-        if (embedding.Length > 0)
+        var documents = new List<string>();
+
+        for (int i = 0; i < query.Length; i += chunkSize - overlap)
         {
-            vectorStore[JsonSerializer.Serialize(embedding)] = query;
+            var chunk = string.Join(" ", query.Skip(i).Take(chunkSize));
+            documents.Add(chunk);
         }
 
-        SaveVectorStore(vectorStore);
+        foreach (var doc in documents)
+        {
+            var embedding = await GenerateEmbeddingAsync(doc);
+            if (embedding.Length > 0)
+            {
+                vectorStore[JsonSerializer.Serialize(embedding)] = doc;
+            }
+        }
+
+        SaveVectorStore(vectorStore);     
 
         await Console.Out.WriteLineAsync("Feeded!");
         return LoadVectorStore();
@@ -173,12 +188,12 @@ public class Utils
         var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
         
         _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.Add("Authorization", "");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
 
 
         try
         {
-            using var response = await _httpClient.PostAsync("https://api.groq.com/openai/v1/chat/completions", content);
+            using var response = await _httpClient.PostAsync(ApiUrl, content);
             
             if (!response.IsSuccessStatusCode)
             {
@@ -188,7 +203,6 @@ public class Utils
 
             
             var stream = await response.Content.ReadAsStreamAsync();
-            var sb = new StringBuilder();
 
             using var reader = new StreamReader(stream);
 
@@ -201,8 +215,7 @@ public class Utils
                     var chunk = JsonSerializer.Deserialize<ChatResponse>(line);
                     if (chunk != null)
                     {
-                        sb.Append(chunk.Choices.Message.Content);
-                        
+                        await Console.Out.WriteLineAsync(chunk.Choices[0].Message.Content);
                     }
                 }
                 catch (JsonException ex)
@@ -210,8 +223,6 @@ public class Utils
                     Console.WriteLine($"JSON Error: {ex.Message}");
                 }
             }
-
-            Console.WriteLine(sb.ToString());
         }
         catch (Exception ex)
         {

@@ -42,7 +42,7 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
    "vectorStoreFilePath": "", - fill with .json file <br/>
    "groq_apikey": "", <br/>
    "correctionPrefix": "", <br/>
-   "api-url": ""
+   "api-url": "" <br/>
  }
 
 Should be filled with your data

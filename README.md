@@ -39,7 +39,10 @@ This is a .NET console application that implements Retrieval-Augmented Generatio
    "embeddingModel": "",<br/>
    "respondingModel": "",<br/>
    "txtFilePath": "",<br/>
-   "vectorStoreFilePath": "" - fill with .json file <br/>
+   "vectorStoreFilePath": "", - fill with .json file <br/>
+   "groq_apikey": "", <br/>
+   "correctionPrefix": "", <br/>
+   "api-url": ""
  }
 
 Should be filled with your data
